@@ -121,7 +121,7 @@ public class KitapSil extends JFrame {
 		lblNewLabel_1_5.setBounds(167, 300, 96, 13);
 		contentPane.add(lblNewLabel_1_5);
 		
-		JButton btnNewButton = new JButton("ÇIKAR");
+		JButton btnNewButton = new JButton("SİL");
 		btnNewButton.setBounds(226, 345, 85, 21);
 		contentPane.add(btnNewButton);
 	}
