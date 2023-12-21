@@ -88,7 +88,7 @@ public class KullanıcıAra extends JFrame {
 		lblEmail.setBounds(177, 281, 45, 13);
 		contentPane.add(lblEmail);
 		
-		JButton btnNewButton = new JButton("EKLE");
+		JButton btnNewButton = new JButton("ARA");
 		btnNewButton.setBounds(223, 327, 85, 21);
 		contentPane.add(btnNewButton);
 	}
