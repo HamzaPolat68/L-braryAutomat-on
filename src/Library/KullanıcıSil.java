@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class KullanıcıSil extends JFrame {
 
@@ -42,6 +43,7 @@ public class KullanıcıSil extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(105, 105, 105));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -59,7 +61,7 @@ public class KullanıcıSil extends JFrame {
 		
 		JLabel lblTelefonNo = new JLabel("Telefon No");
 		lblTelefonNo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTelefonNo.setBounds(164, 254, 45, 13);
+		lblTelefonNo.setBounds(164, 254, 65, 13);
 		contentPane.add(lblTelefonNo);
 		
 		JLabel lblEmail = new JLabel("E-mail");
