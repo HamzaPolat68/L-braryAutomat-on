@@ -15,7 +15,10 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+
 import javax.swing.UIManager;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -55,7 +58,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Kullanıcı Adı");
-		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(243, 253, 117, 28);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -78,6 +81,10 @@ public class Login extends JFrame {
 		contentPane.add(tfSifre);
 		
 		JButton btnGiris = new JButton("Giriş");
+		btnGiris.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnGiris.setBounds(312, 350, 117, 28);
 		contentPane.add(btnGiris);
 		
@@ -89,6 +96,8 @@ public class Login extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\login.jpg"));
 		lblNewLabel_1.setBounds(21, -77, 962, 728);
 		contentPane.add(lblNewLabel_1);
+		
+		
 		
 		
 	}
