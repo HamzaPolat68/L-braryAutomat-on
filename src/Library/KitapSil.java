@@ -15,7 +15,7 @@ public class KitapSil extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfKitapId;
 
 	/**
 	 * Launch the application.
@@ -47,19 +47,19 @@ public class KitapSil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(276, 255, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfKitapId = new JTextField();
+		tfKitapId.setBounds(276, 255, 96, 19);
+		contentPane.add(tfKitapId);
+		tfKitapId.setColumns(10);
 		
-		JLabel lblId = new JLabel("ID");
-		lblId.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblId.setBounds(195, 257, 56, 13);
-		contentPane.add(lblId);
+		JLabel lblKitapId = new JLabel("ID");
+		lblKitapId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblKitapId.setBounds(195, 257, 56, 13);
+		contentPane.add(lblKitapId);
 		
-		JButton btnNewButton = new JButton("SİL");
-		btnNewButton.setBounds(234, 296, 85, 21);
-		contentPane.add(btnNewButton);
+		JButton btnSil = new JButton("SİL");
+		btnSil.setBounds(234, 296, 85, 21);
+		contentPane.add(btnSil);
 	}
 
 }

@@ -15,7 +15,7 @@ public class Kitapiade extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfKitapId;
 
 	/**
 	 * Launch the application.
@@ -47,19 +47,19 @@ public class Kitapiade extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(264, 216, 96, 19);
-		contentPane.add(textField);
+		tfKitapId = new JTextField();
+		tfKitapId.setColumns(10);
+		tfKitapId.setBounds(264, 216, 96, 19);
+		contentPane.add(tfKitapId);
 		
-		JLabel lblNewLabel = new JLabel("ID");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(178, 218, 59, 13);
-		contentPane.add(lblNewLabel);
+		JLabel lblKitapId = new JLabel("ID");
+		lblKitapId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblKitapId.setBounds(178, 218, 59, 13);
+		contentPane.add(lblKitapId);
 		
-		JButton btnNewButton = new JButton("İade Et");
-		btnNewButton.setBounds(222, 261, 85, 21);
-		contentPane.add(btnNewButton);
+		JButton btnIadeEt = new JButton("İade Et");
+		btnIadeEt.setBounds(222, 261, 85, 21);
+		contentPane.add(btnIadeEt);
 	}
 
 }

@@ -20,8 +20,6 @@ public class KütüphaneBilgi extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtkitapsayi;
-	private JTextField txtüyesayi;
 
 	/**
 	 * Launch the application.
@@ -59,58 +57,57 @@ public class KütüphaneBilgi extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("KİTAP SAYISI");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(71, 56, 134, 30);
-		panel.add(lblNewLabel);
+		JLabel lblkitapsayi = new JLabel("KİTAP SAYISI");
+		lblkitapsayi.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblkitapsayi.setBounds(71, 56, 134, 30);
+		panel.add(lblkitapsayi);
 		
-		JLabel lblNewLabel_1 = new JLabel("ÜYE SAYISI");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(395, 56, 134, 30);
-		panel.add(lblNewLabel_1);
+		JLabel lbluyesayisi = new JLabel("ÜYE SAYISI");
+		lbluyesayisi.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lbluyesayisi.setBounds(395, 56, 134, 30);
+		panel.add(lbluyesayisi);
 		
-		txtkitapsayi = new JTextField();
-		txtkitapsayi.setBounds(80, 27, 96, 19);
-		panel.add(txtkitapsayi);
-		txtkitapsayi.setColumns(10);
+		JLabel lblKitapSayi = new JLabel("");
+		lblKitapSayi.setBounds(102, 27, 58, 19);
+		panel.add(lblKitapSayi);
 		
-		txtüyesayi = new JTextField();
-		txtüyesayi.setColumns(10);
-		txtüyesayi.setBounds(397, 27, 96, 19);
-		panel.add(txtüyesayi);
+		JLabel lbluyesayi = new JLabel("");
+		lbluyesayi.setBounds(417, 25, 58, 19);
+		panel.add(lbluyesayi);
 		
-		JLabel lblNewLabel_2 = new JLabel("              KÜTÜPHANE HAKKINDA");
-		lblNewLabel_2.setForeground(new Color(139, 69, 19));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblNewLabel_2.setBounds(33, 116, 524, 53);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblKutupHak = new JLabel("              KÜTÜPHANE HAKKINDA");
+		lblKutupHak.setForeground(new Color(139, 69, 19));
+		lblKutupHak.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblKutupHak.setBounds(33, 116, 524, 53);
+		contentPane.add(lblKutupHak);
 		
-		JTextPane txtpnFikiratlasKtphanesiniversitemizin = new JTextPane();
-		txtpnFikiratlasKtphanesiniversitemizin.setBackground(new Color(211, 211, 211));
-		txtpnFikiratlasKtphanesiniversitemizin.setForeground(new Color(165, 42, 42));
-		txtpnFikiratlasKtphanesiniversitemizin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		txtpnFikiratlasKtphanesiniversitemizin.setText("                                                                     FikirAtlası Kütüphanesi Üniversitemizin eğitim-öğretim ve araştırma faaliyetlerini desteklemek amacıyla 2023 yılında kurulmuştur. Bünyesinde birçok  kitap barındıran kütüphanemizden, aldığınız kitabı zamanında teslim etmek şartıyla istediğiniz kitabı ödünç alabilirsiniz. Keyifli ve bilgi dolu okumalar...");
-		txtpnFikiratlasKtphanesiniversitemizin.setBounds(33, 165, 524, 207);
-		contentPane.add(txtpnFikiratlasKtphanesiniversitemizin);
+		JTextPane txtpnAciklama = new JTextPane();
+		txtpnAciklama.setBackground(new Color(211, 211, 211));
+		txtpnAciklama.setForeground(new Color(165, 42, 42));
+		txtpnAciklama.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtpnAciklama.setText("                                                                     FikirAtlası Kütüphanesi Üniversitemizin eğitim-öğretim ve araştırma faaliyetlerini desteklemek amacıyla 2023 yılında kurulmuştur. Bünyesinde birçok  kitap barındıran kütüphanemizden, aldığınız kitabı zamanında teslim etmek şartıyla istediğiniz kitabı ödünç alabilirsiniz. Keyifli ve bilgi dolu okumalar...");
+		txtpnAciklama.setBounds(33, 165, 524, 207);
+		contentPane.add(txtpnAciklama);
 		
-		JLabel lblNewLabel_3 = new JLabel("İLETİŞİM");
-		lblNewLabel_3.setForeground(new Color(255, 0, 0));
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_3.setBounds(33, 382, 103, 39);
-		contentPane.add(lblNewLabel_3);
+		JLabel lblIletisim = new JLabel("İLETİŞİM");
+		lblIletisim.setForeground(new Color(255, 0, 0));
+		lblIletisim.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblIletisim.setBounds(33, 382, 103, 39);
+		contentPane.add(lblIletisim);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\indir.png"));
-		lblNewLabel_4.setBounds(33, 419, 50, 50);
-		contentPane.add(lblNewLabel_4);
+		JLabel lblMailLogo = new JLabel("");
+		lblMailLogo.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\mail icon.png"));
+		lblMailLogo.setBounds(33, 419, 50, 50);
+		contentPane.add(lblMailLogo);
 		
-		JLabel lblNewLabel_5 = new JLabel("polatcelikhamza94@gmail.com");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_5.setBounds(93, 416, 246, 53);
-		contentPane.add(lblNewLabel_5);
+		JLabel lblBırMail = new JLabel("polatcelikhamza94@gmail.com");
+		lblBırMail.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblBırMail.setBounds(93, 403, 246, 53);
+		contentPane.add(lblBırMail);
 		
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(321, 418, 265, 53);
-		contentPane.add(lblNewLabel_6);
+		JLabel lblIkiMail = new JLabel("ysnkvk2002@gmail.com");
+		lblIkiMail.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblIkiMail.setBounds(93, 431, 265, 53);
+		contentPane.add(lblIkiMail);
 	}
 }

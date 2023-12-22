@@ -10,22 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JComboBox;
 
 public class KitapEkle extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JLabel lblNewLabel;
-	private JLabel lblSayfaSays;
-	private JLabel lblKitapTr;
+	private JTextField tfKitapId;
+	private JTextField tfKitapAdi;
+	private JTextField tfSayfaSayisi;
+	private JTextField tfYazar;
+	private JTextField tfBasimYili;
+	private JLabel lblKitapAdi;
+	private JLabel lblSayfaSayisi;
+	private JLabel lblKitapTür;
 	private JLabel lblYazar;
-	private JLabel lblBasmYl;
+	private JLabel lblBasimYil;
 
 	/**
 	 * Launch the application.
@@ -57,68 +57,67 @@ public class KitapEkle extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(312, 141, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfKitapId = new JTextField();
+		tfKitapId.setBounds(312, 141, 96, 19);
+		contentPane.add(tfKitapId);
+		tfKitapId.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(312, 170, 96, 19);
-		contentPane.add(textField_1);
+		tfKitapAdi = new JTextField();
+		tfKitapAdi.setColumns(10);
+		tfKitapAdi.setBounds(312, 170, 96, 19);
+		contentPane.add(tfKitapAdi);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(312, 204, 96, 19);
-		contentPane.add(textField_2);
+		tfSayfaSayisi = new JTextField();
+		tfSayfaSayisi.setColumns(10);
+		tfSayfaSayisi.setBounds(312, 204, 96, 19);
+		contentPane.add(tfSayfaSayisi);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(312, 233, 96, 19);
-		contentPane.add(textField_3);
+		tfYazar = new JTextField();
+		tfYazar.setColumns(10);
+		tfYazar.setBounds(312, 262, 96, 19);
+		contentPane.add(tfYazar);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(312, 262, 96, 19);
-		contentPane.add(textField_4);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(312, 293, 96, 19);
-		contentPane.add(textField_5);
+		tfBasimYili = new JTextField();
+		tfBasimYili.setColumns(10);
+		tfBasimYili.setBounds(312, 293, 96, 19);
+		contentPane.add(tfBasimYili);
 		
 		JLabel lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblId.setBounds(197, 141, 45, 13);
 		contentPane.add(lblId);
 		
-		lblNewLabel = new JLabel("Kitap Adı");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(197, 172, 73, 13);
-		contentPane.add(lblNewLabel);
+		lblKitapAdi = new JLabel("Kitap Adı");
+		lblKitapAdi.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblKitapAdi.setBounds(197, 172, 73, 13);
+		contentPane.add(lblKitapAdi);
 		
-		lblSayfaSays = new JLabel("Sayfa Sayısı");
-		lblSayfaSays.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSayfaSays.setBounds(197, 203, 105, 13);
-		contentPane.add(lblSayfaSays);
+		lblSayfaSayisi = new JLabel("Sayfa Sayısı");
+		lblSayfaSayisi.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSayfaSayisi.setBounds(197, 203, 105, 13);
+		contentPane.add(lblSayfaSayisi);
 		
-		lblKitapTr = new JLabel("Kitap Türü");
-		lblKitapTr.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblKitapTr.setBounds(197, 234, 73, 13);
-		contentPane.add(lblKitapTr);
+		lblKitapTür = new JLabel("Kitap Türü");
+		lblKitapTür.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblKitapTür.setBounds(197, 234, 73, 13);
+		contentPane.add(lblKitapTür);
 		
 		lblYazar = new JLabel("Yazar");
 		lblYazar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblYazar.setBounds(197, 265, 45, 13);
 		contentPane.add(lblYazar);
 		
-		lblBasmYl = new JLabel("Basım Yılı");
-		lblBasmYl.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBasmYl.setBounds(197, 296, 73, 13);
-		contentPane.add(lblBasmYl);
+		lblBasimYil = new JLabel("Basım Yılı");
+		lblBasimYil.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblBasimYil.setBounds(197, 296, 73, 13);
+		contentPane.add(lblBasimYil);
 		
-		JButton btnNewButton = new JButton("EKLE");
-		btnNewButton.setBounds(258, 333, 85, 21);
-		contentPane.add(btnNewButton);
+		JButton btnEkle = new JButton("EKLE");
+		btnEkle.setBounds(258, 333, 85, 21);
+		contentPane.add(btnEkle);
+		
+		JComboBox cbKitapTür = new JComboBox();
+		cbKitapTür.setBounds(312, 231, 96, 21);
+		contentPane.add(cbKitapTür);
 	}
 }

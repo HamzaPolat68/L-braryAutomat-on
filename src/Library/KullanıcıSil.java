@@ -15,10 +15,7 @@ public class KullanıcıSil extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField tfId;
 
 	/**
 	 * Launch the application.
@@ -49,49 +46,19 @@ public class KullanıcıSil extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblAd = new JLabel("Ad");
-		lblAd.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAd.setBounds(164, 165, 45, 13);
-		contentPane.add(lblAd);
+		JLabel lblId = new JLabel("ID");
+		lblId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblId.setBounds(163, 265, 45, 13);
+		contentPane.add(lblId);
 		
-		JLabel lblSoyad = new JLabel("Soyad");
-		lblSoyad.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSoyad.setBounds(164, 208, 45, 13);
-		contentPane.add(lblSoyad);
+		tfId = new JTextField();
+		tfId.setBounds(251, 263, 96, 19);
+		contentPane.add(tfId);
+		tfId.setColumns(10);
 		
-		JLabel lblTelefonNo = new JLabel("Telefon No");
-		lblTelefonNo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTelefonNo.setBounds(164, 254, 65, 13);
-		contentPane.add(lblTelefonNo);
-		
-		JLabel lblEmail = new JLabel("E-mail");
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail.setBounds(164, 293, 45, 13);
-		contentPane.add(lblEmail);
-		
-		textField = new JTextField();
-		textField.setBounds(255, 162, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(255, 205, 96, 19);
-		contentPane.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(255, 251, 96, 19);
-		contentPane.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(255, 290, 96, 19);
-		contentPane.add(textField_3);
-		
-		JButton btnNewButton = new JButton("SİL");
-		btnNewButton.setBounds(217, 336, 85, 21);
-		contentPane.add(btnNewButton);
+		JButton btnSil = new JButton("SİL");
+		btnSil.setBounds(217, 317, 85, 21);
+		contentPane.add(btnSil);
 	}
 
 }

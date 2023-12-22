@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -16,6 +17,11 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.UIManager;
 import java.awt.event.ActionEvent;
@@ -26,11 +32,21 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfKAdi;
 	private JPasswordField tfSifre;
+	static final String DB="jdbc:sqlserver://localhost:1433;databaseName=LibraryAutomation";
+	static final String USER="sa";
+	static final String PASS="root";
+
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+	        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	        return;
+	    }
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -57,12 +73,12 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Kullanıcı Adı");
-		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(243, 253, 117, 28);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		contentPane.add(lblNewLabel);
+		JLabel lblkulad = new JLabel("Kullanıcı Adı");
+		lblkulad.setForeground(Color.BLACK);
+		lblkulad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblkulad.setBounds(243, 253, 117, 28);
+		lblkulad.setFont(new Font("Tahoma", Font.BOLD, 15));
+		contentPane.add(lblkulad);
 		
 		JLabel lblSifre = new JLabel("Şifre");
 		lblSifre.setForeground(new Color(0, 0, 0));
@@ -83,6 +99,27 @@ public class Login extends JFrame {
 		JButton btnGiris = new JButton("Giriş");
 		btnGiris.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String username = tfKAdi.getText();
+		        String password = new String(tfSifre.getPassword());
+		        
+		        try (Connection connection = DriverManager.getConnection(DB,USER,PASS)) {
+		            String query = "SELECT * FROM Users WHERE KullanıcıAdı = ? AND Şifre = ?";
+		            try (PreparedStatement statement = connection.prepareStatement(query)) {
+		                statement.setString(1, username);
+		                statement.setString(2, password);
+
+		                try (ResultSet resultSet = statement.executeQuery()) {
+		                    if (resultSet.next()) {
+		                    	JOptionPane.showMessageDialog(null, "Başarıyla giriş yaptınız!");
+		                    } else {
+		                    	JOptionPane.showMessageDialog(null, "Kullanıcı adı veya şifre hatalı. Lütfen kontrol edin veya kayıt olun.");
+		                    }
+		                }
+		            }
+		        } catch (SQLException ee) {
+		            ee.printStackTrace();
+		            JOptionPane.showMessageDialog(null, "Giriş işlemi sırasında bir hata oluştu.");
+		        }
 			}
 		});
 		btnGiris.setBounds(312, 350, 117, 28);
@@ -92,10 +129,10 @@ public class Login extends JFrame {
 		btnUyeOl.setBounds(312, 405, 117, 28);
 		contentPane.add(btnUyeOl);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\login.jpg"));
-		lblNewLabel_1.setBounds(21, -77, 962, 728);
-		contentPane.add(lblNewLabel_1);
+		JLabel lbluyeol = new JLabel("");
+		lbluyeol.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\login.jpg"));
+		lbluyeol.setBounds(21, -77, 962, 728);
+		contentPane.add(lbluyeol);
 		
 		
 		

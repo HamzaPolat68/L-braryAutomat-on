@@ -21,17 +21,18 @@ public class Signin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField tfAd;
-	private JLabel lblNewLabel_1;
-	private JTextField tfSoyad;
-	private JLabel lblNewLabel_2;
+	private JTextField tfkulad;
+	private JLabel lblsifre;
+	private JTextField tfsifre;
+	private JLabel lblemail;
 	private JTextField tfEmail;
-	private JTextField tfTelefonNo;
-	private JLabel lblNewLabel_3;
+	private JTextField tftel;
+	private JLabel lbltel;
 	private JButton btnKayitOl;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfsoyad;
+	private JTextField tfad;
 	private JLabel lblNewLabel_4;
+	private JLabel lblkulad;
 
 	/**
 	 * Launch the application.
@@ -64,51 +65,52 @@ public class Signin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ad");
-		lblNewLabel.setBounds(272, 106, 68, 28);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
-		contentPane.add(lblNewLabel);
+		JLabel lblad = new JLabel("Ad");
+		lblad.setBounds(272, 106, 68, 28);
+		lblad.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lblad);
 		
-		JLabel lblNewLabel_4 = new JLabel("Kullanıcı Adı");
-		lblNewLabel_4.setBounds(272, 192, 68, 28);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 10));
-		contentPane.add(lblNewLabel_4);
+		JLabel lblNewLabel_4;
+		lblkulad = new JLabel("Kullanıcı Adı");
+		lblkulad.setBounds(272, 192, 68, 28);
+		lblkulad.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lblkulad);
 		
-		tfAd = new JTextField();
-		tfAd.setBounds(388, 197, 96, 19);
-		contentPane.add(tfAd);
-		tfAd.setColumns(10);
+		tfkulad = new JTextField();
+		tfkulad.setBounds(388, 197, 96, 19);
+		contentPane.add(tfkulad);
+		tfkulad.setColumns(10);
 
 		
-		lblNewLabel_1 = new JLabel("Şifre");
-		lblNewLabel_1.setBounds(272, 235, 68, 28);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 10));
-		contentPane.add(lblNewLabel_1);
+		lblsifre = new JLabel("Şifre");
+		lblsifre.setBounds(272, 235, 68, 28);
+		lblsifre.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lblsifre);
 		
-		tfSoyad = new JTextField();
-		tfSoyad.setBounds(388, 240, 96, 19);
-		contentPane.add(tfSoyad);
-		tfSoyad.setColumns(10);
+		tfsifre = new JTextField();
+		tfsifre.setBounds(388, 240, 96, 19);
+		contentPane.add(tfsifre);
+		tfsifre.setColumns(10);
 		
-		lblNewLabel_2 = new JLabel("E-Mail");
-		lblNewLabel_2.setBounds(272, 278, 68, 28);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 10));
-		contentPane.add(lblNewLabel_2);
+		lblemail = new JLabel("E-Mail");
+		lblemail.setBounds(272, 278, 68, 28);
+		lblemail.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lblemail);
 		
 		tfEmail = new JTextField();
 		tfEmail.setBounds(388, 283, 96, 19);
 		contentPane.add(tfEmail);
 		tfEmail.setColumns(10);
 		
-		tfTelefonNo = new JTextField();
-		tfTelefonNo.setBounds(388, 326, 96, 19);
-		contentPane.add(tfTelefonNo);
-		tfTelefonNo.setColumns(10);
+		tftel = new JTextField();
+		tftel.setBounds(388, 326, 96, 19);
+		contentPane.add(tftel);
+		tftel.setColumns(10);
 		
-		lblNewLabel_3 = new JLabel("Telefon No");
-		lblNewLabel_3.setBounds(272, 321, 68, 28);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 10));
-		contentPane.add(lblNewLabel_3);
+		lbltel = new JLabel("Telefon No");
+		lbltel.setBounds(272, 321, 68, 28);
+		lbltel.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lbltel);
 		
 		btnKayitOl = new JButton("Kayıt Ol");
 		btnKayitOl.addActionListener(new ActionListener() {
@@ -120,20 +122,20 @@ public class Signin extends JFrame {
 		btnKayitOl.setBackground(Color.BLACK);
 		contentPane.add(btnKayitOl);
 		
-		JLabel lblNewLabel_5 = new JLabel("Soyad");
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblNewLabel_5.setBounds(272, 149, 68, 28);
-		contentPane.add(lblNewLabel_5);
+		JLabel lblsoyad = new JLabel("Soyad");
+		lblsoyad.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblsoyad.setBounds(272, 149, 68, 28);
+		contentPane.add(lblsoyad);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(388, 154, 96, 19);
-		contentPane.add(textField);
+		tfsoyad = new JTextField();
+		tfsoyad.setColumns(10);
+		tfsoyad.setBounds(388, 154, 96, 19);
+		contentPane.add(tfsoyad);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(388, 111, 96, 19);
-		contentPane.add(textField_1);
+		tfad = new JTextField();
+		tfad.setColumns(10);
+		tfad.setBounds(388, 111, 96, 19);
+		contentPane.add(tfad);
 		
 		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\signin (1).jpg"));

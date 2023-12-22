@@ -15,8 +15,8 @@ public class KitapÖdüncAl extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JButton btnNewButton;
+	private JTextField tfKitapId;
+	private JButton btnOduncAl;
 
 	/**
 	 * Launch the application.
@@ -47,19 +47,19 @@ public class KitapÖdüncAl extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ID");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(165, 242, 60, 13);
-		contentPane.add(lblNewLabel);
+		JLabel lblKitapId = new JLabel("ID");
+		lblKitapId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblKitapId.setBounds(165, 242, 60, 13);
+		contentPane.add(lblKitapId);
 		
-		textField = new JTextField();
-		textField.setBounds(259, 240, 96, 19);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfKitapId = new JTextField();
+		tfKitapId.setBounds(259, 240, 96, 19);
+		contentPane.add(tfKitapId);
+		tfKitapId.setColumns(10);
 		
-		btnNewButton = new JButton("Ödünç Al");
-		btnNewButton.setBounds(211, 285, 85, 21);
-		contentPane.add(btnNewButton);
+		btnOduncAl = new JButton("Ödünç Al");
+		btnOduncAl.setBounds(211, 285, 85, 21);
+		contentPane.add(btnOduncAl);
 	}
 
 }
