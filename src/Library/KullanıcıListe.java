@@ -5,11 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
 
-public class KitapListe extends JFrame {
+public class KullanıcıListe extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -22,7 +22,7 @@ public class KitapListe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KitapListe frame = new KitapListe();
+					KullanıcıListe frame = new KullanıcıListe();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,9 +34,9 @@ public class KitapListe extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KitapListe() {
+	public KullanıcıListe() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 900);
+		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -44,24 +44,23 @@ public class KitapListe extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 10, 890, 700);
+		scrollPane.setBounds(0, 10, 808, 644);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"ID", "Kitap Ad\u0131", "Sayfa Say\u0131s\u0131", "Kitap T\u00FCr\u00FC", "Yazar", "Bas\u0131m Y\u0131l\u0131", "Ekleme Tarihi", "D\u00FCzenleme Tarihi"
+				"ID", "Ad", "Soyad", "Telefon No", "E-mail"
 			}
 		));
-		table.setBounds(161, 426, 169, 103);
+		table.setBounds(241, 465, 157, 62);
 		//contentPane.add(table);
 		scrollPane.setViewportView(table);
-		
 	}
 
 }

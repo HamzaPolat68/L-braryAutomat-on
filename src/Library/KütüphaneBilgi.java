@@ -20,8 +20,8 @@ public class KütüphaneBilgi extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtkitapsayi;
+	private JTextField txtüyesayi;
 
 	/**
 	 * Launch the application.
@@ -69,15 +69,15 @@ public class KütüphaneBilgi extends JFrame {
 		lblNewLabel_1.setBounds(395, 56, 134, 30);
 		panel.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(80, 27, 96, 19);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtkitapsayi = new JTextField();
+		txtkitapsayi.setBounds(80, 27, 96, 19);
+		panel.add(txtkitapsayi);
+		txtkitapsayi.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(397, 27, 96, 19);
-		panel.add(textField_1);
+		txtüyesayi = new JTextField();
+		txtüyesayi.setColumns(10);
+		txtüyesayi.setBounds(397, 27, 96, 19);
+		panel.add(txtüyesayi);
 		
 		JLabel lblNewLabel_2 = new JLabel("              KÜTÜPHANE HAKKINDA");
 		lblNewLabel_2.setForeground(new Color(139, 69, 19));
@@ -90,7 +90,7 @@ public class KütüphaneBilgi extends JFrame {
 		txtpnFikiratlasKtphanesiniversitemizin.setForeground(new Color(165, 42, 42));
 		txtpnFikiratlasKtphanesiniversitemizin.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtpnFikiratlasKtphanesiniversitemizin.setText("                                                                     FikirAtlası Kütüphanesi Üniversitemizin eğitim-öğretim ve araştırma faaliyetlerini desteklemek amacıyla 2023 yılında kurulmuştur. Bünyesinde birçok  kitap barındıran kütüphanemizden, aldığınız kitabı zamanında teslim etmek şartıyla istediğiniz kitabı ödünç alabilirsiniz. Keyifli ve bilgi dolu okumalar...");
-		txtpnFikiratlasKtphanesiniversitemizin.setBounds(33, 165, 488, 207);
+		txtpnFikiratlasKtphanesiniversitemizin.setBounds(33, 165, 524, 207);
 		contentPane.add(txtpnFikiratlasKtphanesiniversitemizin);
 		
 		JLabel lblNewLabel_3 = new JLabel("İLETİŞİM");
