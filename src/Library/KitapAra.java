@@ -17,7 +17,6 @@ public class KitapAra extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -67,19 +66,14 @@ public class KitapAra extends JFrame {
 		textField_1.setBounds(260, 181, 96, 19);
 		contentPane.add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(260, 210, 96, 19);
-		contentPane.add(textField_2);
-		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(260, 240, 96, 19);
+		textField_3.setBounds(260, 214, 96, 19);
 		contentPane.add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(260, 270, 96, 19);
+		textField_4.setBounds(260, 240, 96, 19);
 		contentPane.add(textField_4);
 		
 		JLabel lblKitapAd_1 = new JLabel("Kitap Adı");
@@ -87,33 +81,28 @@ public class KitapAra extends JFrame {
 		lblKitapAd_1.setBounds(149, 186, 78, 13);
 		contentPane.add(lblKitapAd_1);
 		
-		JLabel lblSayfaSays = new JLabel("Sayfa Sayısı");
-		lblSayfaSays.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSayfaSays.setBounds(149, 215, 78, 13);
-		contentPane.add(lblSayfaSays);
-		
 		JLabel lblKitapTr = new JLabel("Kitap Türü");
 		lblKitapTr.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblKitapTr.setBounds(149, 244, 78, 13);
+		lblKitapTr.setBounds(149, 215, 78, 13);
 		contentPane.add(lblKitapTr);
 		
 		JLabel lblYazar = new JLabel("Yazar");
 		lblYazar.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblYazar.setBounds(149, 273, 45, 13);
+		lblYazar.setBounds(149, 244, 45, 13);
 		contentPane.add(lblYazar);
 		
 		JLabel lblBasmYl = new JLabel("Basım Yılı");
 		lblBasmYl.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblBasmYl.setBounds(149, 302, 78, 13);
+		lblBasmYl.setBounds(149, 273, 78, 13);
 		contentPane.add(lblBasmYl);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(260, 300, 96, 19);
+		textField_5.setBounds(260, 270, 96, 19);
 		contentPane.add(textField_5);
 		
 		JButton btnNewButton = new JButton("Ara");
-		btnNewButton.setBounds(207, 347, 85, 21);
+		btnNewButton.setBounds(205, 316, 85, 21);
 		contentPane.add(btnNewButton);
 	}
 

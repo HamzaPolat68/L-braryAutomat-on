@@ -35,6 +35,7 @@ public class KullanıcıListe extends JFrame {
 	 * Create the frame.
 	 */
 	public KullanıcıListe() {
+		setTitle("Kullanıcı Liste");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();

@@ -21,13 +21,11 @@ public class KitapEkle extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private JTextField textField_6;
 	private JLabel lblNewLabel;
 	private JLabel lblSayfaSays;
 	private JLabel lblKitapTr;
 	private JLabel lblYazar;
 	private JLabel lblBasmYl;
-	private JLabel lblEklemeTarihi;
 
 	/**
 	 * Launch the application.
@@ -89,11 +87,6 @@ public class KitapEkle extends JFrame {
 		textField_5.setBounds(312, 293, 96, 19);
 		contentPane.add(textField_5);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(312, 323, 96, 19);
-		contentPane.add(textField_6);
-		
 		JLabel lblId = new JLabel("ID");
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblId.setBounds(197, 141, 45, 13);
@@ -124,13 +117,8 @@ public class KitapEkle extends JFrame {
 		lblBasmYl.setBounds(197, 296, 73, 13);
 		contentPane.add(lblBasmYl);
 		
-		lblEklemeTarihi = new JLabel("Ekleme Tarihi");
-		lblEklemeTarihi.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEklemeTarihi.setBounds(197, 327, 105, 13);
-		contentPane.add(lblEklemeTarihi);
-		
 		JButton btnNewButton = new JButton("EKLE");
-		btnNewButton.setBounds(257, 370, 85, 21);
+		btnNewButton.setBounds(258, 333, 85, 21);
 		contentPane.add(btnNewButton);
 	}
 }

@@ -35,8 +35,9 @@ public class KitapListe extends JFrame {
 	 * Create the frame.
 	 */
 	public KitapListe() {
+		setTitle("Kitap Liste");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 900);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -44,7 +45,7 @@ public class KitapListe extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 10, 890, 700);
+		scrollPane.setBounds(0, 10, 785, 600);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

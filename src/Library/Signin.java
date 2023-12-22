@@ -29,6 +29,8 @@ public class Signin extends JFrame {
 	private JTextField tfTelefonNo;
 	private JLabel lblNewLabel_3;
 	private JButton btnKayitOl;
+	private JTextField textField;
+	private JTextField textField_1;
 	private JLabel lblNewLabel_4;
 
 	/**
@@ -63,16 +65,22 @@ public class Signin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Ad");
-		lblNewLabel.setBounds(272, 192, 68, 28);
+		lblNewLabel.setBounds(272, 106, 68, 28);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_4 = new JLabel("Kullanıcı Adı");
+		lblNewLabel_4.setBounds(272, 192, 68, 28);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(lblNewLabel_4);
 		
 		tfAd = new JTextField();
 		tfAd.setBounds(388, 197, 96, 19);
 		contentPane.add(tfAd);
 		tfAd.setColumns(10);
+
 		
-		lblNewLabel_1 = new JLabel("Soyad");
+		lblNewLabel_1 = new JLabel("Şifre");
 		lblNewLabel_1.setBounds(272, 235, 68, 28);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 10));
 		contentPane.add(lblNewLabel_1);
@@ -112,9 +120,24 @@ public class Signin extends JFrame {
 		btnKayitOl.setBackground(Color.BLACK);
 		contentPane.add(btnKayitOl);
 		
+		JLabel lblNewLabel_5 = new JLabel("Soyad");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 10));
+		lblNewLabel_5.setBounds(272, 149, 68, 28);
+		contentPane.add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(388, 154, 96, 19);
+		contentPane.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(388, 111, 96, 19);
+		contentPane.add(textField_1);
+		
 		lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\signin (1).jpg"));
-		lblNewLabel_4.setBounds(141, -14, 823, 621);
+		lblNewLabel_4.setBounds(148, 59, 472, 456);
 		contentPane.add(lblNewLabel_4);
 		
 	
