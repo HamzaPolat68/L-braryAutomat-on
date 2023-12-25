@@ -9,19 +9,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.Font;
 
-public class KullanıcıListe extends JFrame {
+public class KitapÖdüncBekleyen extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
-	private JLabel lblKulAd;
-	private JTextField tfKulAd;
+	private JLabel lblKitapId;
+	private JTextField tfKitapId;
+	private JButton btnAra;
 
 	/**
 	 * Launch the application.
@@ -30,7 +30,7 @@ public class KullanıcıListe extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					KullanıcıListe frame = new KullanıcıListe();
+					KitapÖdüncBekleyen frame = new KitapÖdüncBekleyen();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,23 +42,23 @@ public class KullanıcıListe extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public KullanıcıListe() {
-		setTitle("Kullanıcı Liste");
+	public KitapÖdüncBekleyen() {
+		setTitle("Kitap Ödünç Bekleyen");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 222, 173));
+		contentPane.setBackground(new Color(210, 180, 140));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(2, 70, 786, 688);
+		scrollPane.setBounds(2, 80, 783, 677);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setBackground(new Color(253, 245, 230));
+		table.setBackground(new Color(255, 248, 220));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -66,26 +66,28 @@ public class KullanıcıListe extends JFrame {
 				{null, null, null, null, null},
 			},
 			new String[] {
-				"ID", "Ad", "Soyad", "Telefon No", "E-mail"
+				"ID", "Kitap Ad\u0131", "\u00DCye Ad\u0131", "\u00DCye Soyad\u0131", "Teslim Tarihi"
 			}
 		));
-		table.setBounds(241, 465, 157, 62);
+		table.setBounds(213, 483, 248, 87);
 		//contentPane.add(table);
 		scrollPane.setViewportView(table);
 		
-		lblKulAd = new JLabel("Kullanıcı Adı");
-		lblKulAd.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblKulAd.setBounds(44, 28, 107, 19);
-		contentPane.add(lblKulAd);
+		lblKitapId = new JLabel("ID");
+		lblKitapId.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblKitapId.setBounds(57, 35, 79, 24);
+		contentPane.add(lblKitapId);
 		
-		tfKulAd = new JTextField();
-		tfKulAd.setBounds(150, 29, 96, 19);
-		contentPane.add(tfKulAd);
-		tfKulAd.setColumns(10);
+		tfKitapId = new JTextField();
+		tfKitapId.setBounds(130, 39, 96, 19);
+		contentPane.add(tfKitapId);
+		tfKitapId.setColumns(10);
 		
-		JButton btnKulAra = new JButton("Ara");
-		btnKulAra.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKulAra.setBounds(279, 28, 85, 21);
-		contentPane.add(btnKulAra);
+		btnAra = new JButton("Ara");
+		btnAra.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnAra.setBounds(277, 38, 85, 21);
+		contentPane.add(btnAra);
+		
 	}
+
 }

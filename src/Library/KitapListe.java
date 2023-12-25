@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class KitapListe extends JFrame {
 
@@ -43,18 +44,20 @@ public class KitapListe extends JFrame {
 	public KitapListe() {
 		setTitle("Kitap Liste");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 800);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 250, 210));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 77, 785, 533);
+		scrollPane.setBounds(2, 77, 783, 677);
 		contentPane.add(scrollPane);
 		
 		kitapTable = new JTable();
+		kitapTable.setBackground(new Color(250, 240, 230));
 		kitapTable.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null, null},
@@ -70,16 +73,16 @@ public class KitapListe extends JFrame {
 		scrollPane.setViewportView(kitapTable);
 		
 		lblKitapAdi = new JLabel("Kitap Adı");
-		lblKitapAdi.setBounds(25, 27, 105, 27);
+		lblKitapAdi.setBounds(35, 27, 105, 27);
 		contentPane.add(lblKitapAdi);
 		
 		tfkitapAd = new JTextField();
-		tfkitapAd.setBounds(101, 31, 88, 19);
+		tfkitapAd.setBounds(127, 31, 88, 19);
 		contentPane.add(tfkitapAd);
 		tfkitapAd.setColumns(10);
 		
 		btnKitapAra = new JButton("Ara");
-		btnKitapAra.setBounds(229, 30, 85, 21);
+		btnKitapAra.setBounds(258, 30, 85, 21);
 		contentPane.add(btnKitapAra);
 		
 	}
