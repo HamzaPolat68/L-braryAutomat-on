@@ -32,21 +32,15 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField tfKAdi;
 	private JPasswordField tfSifre;
-	static final String DB="jdbc:sqlserver://localhost:1433;databaseName=LibraryAutomation";
-	static final String USER="sa";
-	static final String PASS="root";
+	static final String DB="jdbc:mysql://127.0.0.1:3306/mydb";
+	static final String USER="root";
+	static final String PASS="13577";
 
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		try {
-	        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	    } catch (ClassNotFoundException e) {
-	        e.printStackTrace();
-	        return;
-	    }
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -103,14 +97,28 @@ public class Login extends JFrame {
 		        String password = new String(tfSifre.getPassword());
 		        
 		        try (Connection connection = DriverManager.getConnection(DB,USER,PASS)) {
-		            String query = "SELECT * FROM Users WHERE KullanıcıAdı = ? AND Şifre = ?";
+		            String query = "SELECT * FROM `mydb`.`users` WHERE KullanıcıAdı = ? AND Şifre = ?";
 		            try (PreparedStatement statement = connection.prepareStatement(query)) {
 		                statement.setString(1, username);
 		                statement.setString(2, password);
-
+		                
 		                try (ResultSet resultSet = statement.executeQuery()) {
 		                    if (resultSet.next()) {
 		                    	JOptionPane.showMessageDialog(null, "Başarıyla giriş yaptınız!");
+		                    	int roleID = resultSet.getInt("role_id");
+		                    	if (roleID == 1) {
+		                    	    AdminHomePage adminPage1 = new AdminHomePage(username);  
+		                    	    adminPage1.setVisible(true);
+		                    	} else if (roleID == 2) {
+		                    	    CustomerHomePage userPage = new CustomerHomePage(username);
+		                    	    userPage.setVisible(true);
+		                    	} else if (roleID == 3) {
+		                    	    TreasurerHomePage vezPage = new TreasurerHomePage(username);
+		                    	    vezPage.setVisible(true);
+		                    	}
+		                    	else {
+		                    	    JOptionPane.showMessageDialog(null, "Bu role sahip bir sayfa bulunamadı.");
+		                    	}
 		                    } else {
 		                    	JOptionPane.showMessageDialog(null, "Kullanıcı adı veya şifre hatalı. Lütfen kontrol edin veya kayıt olun.");
 		                    }
@@ -126,6 +134,12 @@ public class Login extends JFrame {
 		contentPane.add(btnGiris);
 		
 		JButton btnUyeOl = new JButton("Üye Ol");
+		btnUyeOl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Signin uyeOlmaSayfasi = new Signin(); 
+		        uyeOlmaSayfasi.setVisible(true);
+			}
+		});
 		btnUyeOl.setBounds(312, 405, 117, 28);
 		contentPane.add(btnUyeOl);
 		

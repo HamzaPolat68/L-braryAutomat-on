@@ -9,11 +9,21 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CustomerHomePage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	static final String DB="jdbc:mysql://127.0.0.1:3306/mydb";
+	static final String USER="root";
+	static final String PASS="13577";
 
 	/**
 	 * Launch the application.
@@ -22,7 +32,7 @@ public class CustomerHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerHomePage frame = new CustomerHomePage();
+					CustomerHomePage frame = new CustomerHomePage("1");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +44,7 @@ public class CustomerHomePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CustomerHomePage() {
+	public CustomerHomePage(String kullaniciAdi) {
 		setTitle("CustomerHomePage");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -55,12 +65,12 @@ public class CustomerHomePage extends JFrame {
 		lblUnvan.setBounds(10, 80, 110, 28);
 		contentPane.add(lblUnvan);
 		
-		JLabel lblKAdiDol = new JLabel("");
+		JLabel lblKAdiDol = new JLabel(kullaniciAdi);
 		lblKAdiDol.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblKAdiDol.setBounds(110, 32, 90, 28);
 		contentPane.add(lblKAdiDol);
 		
-		JLabel lblUnvanDol = new JLabel("");
+		JLabel lblUnvanDol = new JLabel("Müşteri");
 		lblUnvanDol.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblUnvanDol.setBounds(110, 80, 90, 28);
 		contentPane.add(lblUnvanDol);
@@ -73,24 +83,36 @@ public class CustomerHomePage extends JFrame {
 		kitapPanel.setLayout(null);
 		
 		JButton btnKitapLis = new JButton("Kitap Listesi");
+		btnKitapLis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapListe kitapListe = new KitapListe(); 
+				kitapListe.setVisible(true);
+			}
+		});
 		btnKitapLis.setBackground(new Color(233, 150, 122));
 		btnKitapLis.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapLis.setBounds(29, 46, 118, 32);
+		btnKitapLis.setBounds(29, 46, 143, 32);
 		kitapPanel.add(btnKitapLis);
 		
-		JButton btnKitapAra = new JButton("Kitap Ara");
-		btnKitapAra.setBackground(new Color(210, 180, 140));
-		btnKitapAra.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapAra.setBounds(213, 46, 109, 32);
-		kitapPanel.add(btnKitapAra);
-		
 		JButton btnKitapOduncAl = new JButton("Kitap Ödünç Al");
+		btnKitapOduncAl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapÖdüncAl kitapOdunc = new KitapÖdüncAl(kullaniciAdi);
+				kitapOdunc.setVisible(true);
+			}
+		});
 		btnKitapOduncAl.setBackground(new Color(184, 134, 11));
 		btnKitapOduncAl.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapOduncAl.setBounds(386, 46, 118, 32);
+		btnKitapOduncAl.setBounds(282, 46, 143, 32);
 		kitapPanel.add(btnKitapOduncAl);
 		
 		JButton btnKitapIade = new JButton("Kitap İade");
+		btnKitapIade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapIade kitapIade = new KitapIade(kullaniciAdi);
+				kitapIade.setVisible(true);
+			}
+		});
 		btnKitapIade.setBackground(new Color(211, 211, 211));
 		btnKitapIade.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnKitapIade.setBounds(574, 46, 128, 32);
@@ -103,27 +125,50 @@ public class CustomerHomePage extends JFrame {
 		contentPane.add(lblKitapIs);
 		
 		JButton btnKütüpBilgi = new JButton("Kütüphane Bilgisi");
+		btnKütüpBilgi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KütüphaneBilgi kütüpBil = new KütüphaneBilgi();
+				kütüpBil.setVisible(true);
+			}
+		});
 		btnKütüpBilgi.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnKütüpBilgi.setBounds(10, 508, 150, 45);
 		contentPane.add(btnKütüpBilgi);
 		
 		JButton btnCikis = new JButton("Çıkış");
+		btnCikis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnCikis.setForeground(new Color(255, 0, 0));
 		btnCikis.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnCikis.setBounds(665, 520, 100, 30);
 		contentPane.add(btnCikis);
 		
 		JButton btnOduncKitap = new JButton("Ödünç Alınan Kitaplar");
+		btnOduncKitap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OduncAlınan odunc = new OduncAlınan();
+				odunc.setVisible(true);
+			}
+		});
 		btnOduncKitap.setBackground(new Color(60, 179, 113));
 		btnOduncKitap.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnOduncKitap.setBounds(93, 287, 200, 60);
 		contentPane.add(btnOduncKitap);
 		
-		JButton btnBekleyenKitap = new JButton("Ödünç Almayı Bekleyen");
-		btnBekleyenKitap.setBackground(new Color(144, 238, 144));
-		btnBekleyenKitap.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnBekleyenKitap.setBounds(459, 287, 200, 60);
-		contentPane.add(btnBekleyenKitap);
+		JButton btndnAlmayBekleyen = new JButton("Ödünç Almayı Bekleyen");
+		btndnAlmayBekleyen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				OduncBekleyen bekleyen = new OduncBekleyen();
+				bekleyen.setVisible(true);
+			}
+		});
+		btndnAlmayBekleyen.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btndnAlmayBekleyen.setBackground(new Color(60, 179, 113));
+		btndnAlmayBekleyen.setBounds(424, 287, 200, 60);
+		contentPane.add(btndnAlmayBekleyen);
 	}
 
 }

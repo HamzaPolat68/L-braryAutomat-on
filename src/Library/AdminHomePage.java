@@ -19,17 +19,26 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTable;
 import java.awt.TextField;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JSeparator;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminHomePage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	static final String DB="jdbc:mysql://127.0.0.1:3306/mydb";
+	static final String USER="root";
+	static final String PASS="13577";
 	/**
 	 * Launch the application.
 	 */
@@ -37,7 +46,7 @@ public class AdminHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminHomePage frame = new AdminHomePage();
+					AdminHomePage frame = new AdminHomePage("1");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +58,7 @@ public class AdminHomePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminHomePage() {
+	public AdminHomePage(String kullaniciAdi) {
 		setTitle("AdminHomePage");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -70,12 +79,12 @@ public class AdminHomePage extends JFrame {
 		lblUnvan.setBounds(10, 80, 109, 28);
 		contentPane.add(lblUnvan);
 		
-		JLabel lblKAdiDol = new JLabel("");
+		JLabel lblKAdiDol = new JLabel(kullaniciAdi);
 		lblKAdiDol.setFont(new Font("Tahoma", Font.BOLD, 10));
-		lblKAdiDol.setBounds(110, 32, 90, 28);
+		lblKAdiDol.setBounds(120, 32, 90, 28);
 		contentPane.add(lblKAdiDol);
-		
-		JLabel lblUnvanDol = new JLabel("");
+	
+		JLabel lblUnvanDol = new JLabel("ADMİN");
 		lblUnvanDol.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblUnvanDol.setBounds(110, 80, 90, 28);
 		contentPane.add(lblUnvanDol);
@@ -85,32 +94,40 @@ public class AdminHomePage extends JFrame {
 		kitapPanel.setBackground(new Color(102, 102, 255));
 		kitapPanel.setForeground(new Color(51, 0, 255));
 		contentPane.add(kitapPanel);
-		kitapPanel.setLayout(null);
 		
 		JButton btnKitapLis = new JButton("Kitap Listesi");
-		btnKitapLis.setForeground(new Color(0, 0, 139));
+		btnKitapLis.setBounds(29, 46, 153, 32);
+		btnKitapLis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapListe kitapListe = new KitapListe(); 
+				kitapListe.setVisible(true);
+			}
+		});
+		kitapPanel.setLayout(null);
+		btnKitapLis.setForeground(SystemColor.desktop);
 		btnKitapLis.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapLis.setBounds(29, 46, 118, 32);
 		kitapPanel.add(btnKitapLis);
 		
-		JButton btnKitapAra = new JButton("Kitap Ara");
-		btnKitapAra.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapAra.setBounds(179, 46, 99, 32);
-		kitapPanel.add(btnKitapAra);
-		
 		JButton btnKitapEkle = new JButton("Kitap Ekle");
+		btnKitapEkle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapEkle kitapEkle = new KitapEkle();
+				kitapEkle.setVisible(true);
+			}
+		});
+		btnKitapEkle.setBounds(298, 46, 162, 32);
 		btnKitapEkle.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapEkle.setBounds(329, 46, 99, 32);
 		kitapPanel.add(btnKitapEkle);
 		
-		JButton btnKitapDuzenle = new JButton("Kitap Düzenle");
-		btnKitapDuzenle.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapDuzenle.setBounds(472, 46, 128, 32);
-		kitapPanel.add(btnKitapDuzenle);
-		
 		JButton btnKitapSil = new JButton("Kitap Sil");
+		btnKitapSil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KitapSil kitapSil = new KitapSil();
+				kitapSil.setVisible(true);;
+			}
+		});
+		btnKitapSil.setBounds(584, 46, 144, 32);
 		btnKitapSil.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKitapSil.setBounds(629, 46, 99, 32);
 		kitapPanel.add(btnKitapSil);
 		
 		JLabel lblKitapIs = new JLabel("KİTAP İŞLEMLERİ");
@@ -127,18 +144,25 @@ public class AdminHomePage extends JFrame {
 		contentPane.add(kullaniciPanel);
 		
 		JButton btnKullaniciLis = new JButton("Kullanıcı Listesi");
+		btnKullaniciLis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KullanıcıListe kulList = new KullanıcıListe();
+				kulList.setVisible(true);
+			}
+		});
 		btnKullaniciLis.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKullaniciLis.setBounds(29, 46, 150, 32);
+		btnKullaniciLis.setBounds(123, 46, 150, 32);
 		kullaniciPanel.add(btnKullaniciLis);
 		
-		JButton btnKullaniciAra = new JButton("Kullanıcı Ara");
-		btnKullaniciAra.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKullaniciAra.setBounds(288, 46, 150, 32);
-		kullaniciPanel.add(btnKullaniciAra);
-		
 		JButton btnKullancSil = new JButton("Kullanıcı Sil");
+		btnKullancSil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KullanıcıSil kulSil = new KullanıcıSil();
+				kulSil.setVisible(true);
+			}
+		});
 		btnKullancSil.setFont(new Font("Tahoma", Font.BOLD, 10));
-		btnKullancSil.setBounds(569, 46, 150, 32);
+		btnKullancSil.setBounds(496, 46, 150, 32);
 		kullaniciPanel.add(btnKullancSil);
 		
 		JLabel lblKullaniciIs = new JLabel("KULLANICI İŞLEMLERİ");
@@ -147,11 +171,22 @@ public class AdminHomePage extends JFrame {
 		contentPane.add(lblKullaniciIs);
 		
 		JButton btnKütüpBilgi = new JButton("Kütüphane Bilgisi");
+		btnKütüpBilgi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				KütüphaneBilgi kütüpBil = new KütüphaneBilgi();
+				kütüpBil.setVisible(true);
+			}
+		});
 		btnKütüpBilgi.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnKütüpBilgi.setBounds(10, 508, 150, 45);
 		contentPane.add(btnKütüpBilgi);
 		
 		JButton btnCikis = new JButton("Çıkış");
+		btnCikis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnCikis.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnCikis.setBounds(676, 520, 100, 30);
 		contentPane.add(btnCikis);

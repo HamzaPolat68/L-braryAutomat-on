@@ -1,6 +1,13 @@
 package Library;
 
 import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class KitapListe extends JFrame {
@@ -21,6 +30,9 @@ public class KitapListe extends JFrame {
 	private JLabel lblKitapAdi;
 	private JTextField tfkitapAd;
 	private JButton btnKitapAra;
+	static final String DB="jdbc:mysql://127.0.0.1:3306/mydb";
+	static final String USER="root";
+	static final String PASS="13577";
 
 	/**
 	 * Launch the application.
@@ -44,45 +56,98 @@ public class KitapListe extends JFrame {
 	public KitapListe() {
 		setTitle("Kitap Liste");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 800);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(250, 250, 210));
+		contentPane.setBackground(new Color(238, 232, 170));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(2, 77, 783, 677);
+		scrollPane.setBounds(0, 77, 785, 486);
 		contentPane.add(scrollPane);
 		
 		kitapTable = new JTable();
-		kitapTable.setBackground(new Color(250, 240, 230));
-		kitapTable.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"ID", "Kitap Ad\u0131", "Sayfa Say\u0131s\u0131", "Kitap T\u00FCr\u00FC", "Yazar", "Bas\u0131m Y\u0131l\u0131", "Ekleme Tarihi", "D\u00FCzenleme Tarihi"
-			}
-		));
+		try (Connection connection = DriverManager.getConnection(DB, USER, PASS)) {
+		    String query = "SELECT books.id, books.BookName, books.Yazar, books.EklemeTarihi, books.DüzenlemeTarihi, category.Name FROM mydb.books INNER JOIN mydb.category ON books.category_id = category.id";
+		    try (PreparedStatement statement = connection.prepareStatement(query)) {
+		        try (ResultSet resultSet = statement.executeQuery()) {
+		            ResultSetMetaData metaData = resultSet.getMetaData();
+		            int columnCount = metaData.getColumnCount();
+		            String[] columnNames = new String[columnCount];
+		            for (int i = 1; i <= columnCount; i++) {
+		                columnNames[i - 1] = metaData.getColumnName(i);
+		            }
+		            ArrayList<Object[]> data = new ArrayList<>();
+		            while (resultSet.next()) {
+		                Object[] row = new Object[columnCount];
+		                for (int i = 1; i <= columnCount; i++) {
+		                    row[i - 1] = resultSet.getObject(i);
+		                }
+		                data.add(row);
+		            }
+		            Object[][] dataArray = data.toArray(new Object[0][0]);
+		            DefaultTableModel model = new DefaultTableModel(dataArray, columnNames);
+		            kitapTable.setModel(model);
+		        }
+		    }
+		} catch (SQLException ex) {
+		    ex.printStackTrace();
+		}
 		kitapTable.setBounds(161, 426, 169, 103);
 		//contentPane.add(table);
 		scrollPane.setViewportView(kitapTable);
 		
 		lblKitapAdi = new JLabel("Kitap Adı");
-		lblKitapAdi.setBounds(35, 27, 105, 27);
+		lblKitapAdi.setBounds(25, 27, 105, 27);
 		contentPane.add(lblKitapAdi);
 		
 		tfkitapAd = new JTextField();
-		tfkitapAd.setBounds(127, 31, 88, 19);
+		tfkitapAd.setBounds(101, 31, 88, 19);
 		contentPane.add(tfkitapAd);
 		tfkitapAd.setColumns(10);
 		
 		btnKitapAra = new JButton("Ara");
-		btnKitapAra.setBounds(258, 30, 85, 21);
+		btnKitapAra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String kitapAdi = tfkitapAd.getText();
+
+		        try (Connection connection = DriverManager.getConnection(DB, USER, PASS)) {
+		            String query = "SELECT books.id, books.BookName, books.Yazar, books.EklemeTarihi, books.DüzenlemeTarihi, category.Name " +
+		                           "FROM mydb.books " +
+		                           "INNER JOIN mydb.category ON books.category_id = category.id " +
+		                           "WHERE books.BookName LIKE ?";
+		            
+		            try (PreparedStatement statement = connection.prepareStatement(query)) {
+		                statement.setString(1, "%" + kitapAdi + "%");
+
+		                try (ResultSet resultSet = statement.executeQuery()) {
+		                    ResultSetMetaData metaData = resultSet.getMetaData();
+		                    int columnCount = metaData.getColumnCount();
+		                    String[] columnNames = new String[columnCount];
+		                    for (int i = 1; i <= columnCount; i++) {
+		                        columnNames[i - 1] = metaData.getColumnName(i);
+		                    }
+		                    ArrayList<Object[]> data = new ArrayList<>();
+		                    while (resultSet.next()) {
+		                        Object[] row = new Object[columnCount];
+		                        for (int i = 1; i <= columnCount; i++) {
+		                            row[i - 1] = resultSet.getObject(i);
+		                        }
+		                        data.add(row);
+		                    }
+		                    Object[][] dataArray = data.toArray(new Object[0][0]);
+		                    DefaultTableModel model = new DefaultTableModel(dataArray, columnNames);
+		                    kitapTable.setModel(model);
+		                }
+		            }
+		        } catch (SQLException ex) {
+		            ex.printStackTrace();
+		        }
+			}
+		});
+		btnKitapAra.setBounds(229, 30, 85, 21);
 		contentPane.add(btnKitapAra);
 		
 	}

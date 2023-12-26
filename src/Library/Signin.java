@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import java.awt.FlowLayout;
 import java.awt.Insets;
@@ -14,6 +15,11 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
@@ -33,6 +39,9 @@ public class Signin extends JFrame {
 	private JTextField tfad;
 	private JLabel lblNewLabel_4;
 	private JLabel lblkulad;
+	static final String DB="jdbc:mysql://127.0.0.1:3306/mydb";
+	static final String USER="root";
+	static final String PASS="13577";
 
 	/**
 	 * Launch the application.
@@ -69,8 +78,6 @@ public class Signin extends JFrame {
 		lblad.setBounds(272, 106, 68, 28);
 		lblad.setFont(new Font("Tahoma", Font.BOLD, 10));
 		contentPane.add(lblad);
-		
-		JLabel lblNewLabel_4;
 		lblkulad = new JLabel("Kullanıcı Adı");
 		lblkulad.setBounds(272, 192, 68, 28);
 		lblkulad.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -111,17 +118,7 @@ public class Signin extends JFrame {
 		lbltel.setBounds(272, 321, 68, 28);
 		lbltel.setFont(new Font("Tahoma", Font.BOLD, 10));
 		contentPane.add(lbltel);
-		
-		btnKayitOl = new JButton("Kayıt Ol");
-		btnKayitOl.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnKayitOl.setBounds(324, 387, 117, 28);
-		btnKayitOl.setForeground(Color.RED);
-		btnKayitOl.setBackground(Color.BLACK);
-		contentPane.add(btnKayitOl);
-		
+
 		JLabel lblsoyad = new JLabel("Soyad");
 		lblsoyad.setFont(new Font("Tahoma", Font.BOLD, 10));
 		lblsoyad.setBounds(272, 149, 68, 28);
@@ -137,10 +134,72 @@ public class Signin extends JFrame {
 		tfad.setBounds(388, 111, 96, 19);
 		contentPane.add(tfad);
 		
-		lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Hamza Polatçelik\\OneDrive - Bolu Abant İzzet Baysal Üniversitesi\\Masaüstü\\signin (1).jpg"));
-		lblNewLabel_4.setBounds(148, 59, 472, 456);
-		contentPane.add(lblNewLabel_4);
+		JButton btnKayit = new JButton("Kayit Ol");
+		btnKayit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				        String Ad = tfad.getText(); 
+				        String Soyad = tfsoyad.getText(); 
+				        String kadi = tfkulad.getText();
+				        String sifre = tfsifre.getText();
+				        String email = tfEmail.getText();
+				        String telefon = tftel.getText();
+
+				        if (Ad.isEmpty() || Soyad.isEmpty() || kadi.isEmpty() || sifre.isEmpty() || email.isEmpty() || telefon.isEmpty()) {
+				            JOptionPane.showMessageDialog(null, "Lütfen tüm alanları doldurun.");
+				            return; 
+				        }
+				        
+				        try (Connection connection = DriverManager.getConnection(DB, USER, PASS)) {
+				            connection.setAutoCommit(false); 
+
+				            String query = "INSERT INTO `mydb`.`customers`(`Name`,`Surname`,`TelephoneNo`,`Email`) VALUES (?, ?, ?, ?)";
+				            String query1 = "INSERT INTO `mydb`.`users`(`KullanıcıAdı`,`Şifre`,`role_id`) VALUES (?, ?, '2')";
+				            String query2 = "SELECT COUNT(*) AS count FROM `mydb`.`users` WHERE `KullanıcıAdı` = ?";
+				            
+				            try (PreparedStatement statement = connection.prepareStatement(query);
+				                 PreparedStatement statement1 = connection.prepareStatement(query1);
+				            	 PreparedStatement Statement2 = connection.prepareStatement(query2)) {
+
+				            	Statement2.setString(1, kadi);
+				            	
+				            	try (ResultSet resultSet = Statement2.executeQuery()) {
+				                    if (resultSet.next()) {
+				                        int count = resultSet.getInt("count");
+				                        if (count > 0) {
+				                            JOptionPane.showMessageDialog(null, "Bu kullanıcı adı zaten mevcut. Lütfen farklı bir kullanıcı adı seçin.");
+				                            return;
+				                        }
+				                      }
+				                    }
+				                statement.setString(1, Ad);
+				                statement.setString(2, Soyad);
+				                statement.setString(3, telefon);
+				                statement.setString(4, email);
+
+				                statement1.setString(1, kadi);
+				                statement1.setString(2, sifre);
+
+				                int affectedRows1 = statement.executeUpdate();
+				                int affectedRows2 = statement1.executeUpdate();
+
+				                if (affectedRows1 > 0 && affectedRows2 > 0) {
+				                    connection.commit(); 
+				                    JOptionPane.showMessageDialog(null, "Kayıt başarıyla oluşturuldu!");
+				                    Login loginPage = new Login();
+				                    loginPage.setVisible(true);
+				                } else {
+				                    connection.rollback(); 
+				                    JOptionPane.showMessageDialog(null, "Kayıt oluşturulamadı. Lütfen tekrar deneyin.");
+				                }
+				            }
+				        } catch (SQLException ex) {
+				            ex.printStackTrace();
+				            JOptionPane.showMessageDialog(null, "Kayıt oluşturma sırasında bir hata oluştu.");
+				        }
+				    }
+				});
+		btnKayit.setBounds(335, 381, 85, 21);
+		contentPane.add(btnKayit);
 		
 	
 	}
